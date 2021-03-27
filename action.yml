@@ -1,13 +1,13 @@
-name: 'Yuotube Checker'
+name: 'Youtube-Checker'
 description: 'Check youtube video length'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  file-path:  # id of input
+    description: 'Name of modified file'
     required: true
-    default: 'World'
+    default: ''
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  reason: # id of output
+    description: 'Validity reason'
 runs:
   using: 'node12'
   main: 'index.js'
