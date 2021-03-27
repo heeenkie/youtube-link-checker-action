@@ -1,16 +1,23 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const { promises: fs } = require('fs')
 
 try {
   // `who-to-greet` input defined in action metadata file
-  const filePath = core.getInput('file-path');
-
-  console.log(`Hello ${filePath}!`);
-  core.setOutput("reason", "Video meets the requirements");
-  //core.setOutput("reason", "Video does not meet the requirements");
-  // Get the JSON webhook payload for the event that triggered the workflow
+  const filePaths = core.getInput('file-path').split(' ');
+  
+  for (var path of filePaths) {
+    if (path.toLowerCase().includes('readme')) {
+      const content = await fs.readFile(path, 'utf8');
+      var result = content.match(/(https?:\/\/[^\s]+)/g);
+      for (r of result) {
+        if (r.includes('youtube')) {
+          core.setOutput('reason', 'Video meets the requirements');
+        }
+      }
+    }
+  }
   const payload = JSON.stringify(github.context.payload, undefined, 2)
-  //console.log(`The event payload: ${payload}`);
 } catch (error) {
   core.setFailed(error.message);
 }
