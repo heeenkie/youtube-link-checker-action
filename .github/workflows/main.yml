@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Hello world action step
-        uses: heeenkie/youtube-link-checker-action
+        uses: ./
         id: hello
         with:
           who-to-greet: 'Andreas'
