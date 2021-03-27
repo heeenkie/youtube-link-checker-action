@@ -7,7 +7,7 @@ try {
   // `who-to-greet` input defined in action metadata file
   var filePaths = core.getInput('file-path');
   console.log("Test-- " + filePaths);
-  filePaths.replace('[', '')
+  filePaths.replace('[', '')qwe
   filePaths.replace(']', '')
   filePaths.replace('"', '')
   var filePathsArr = filePaths.split(',')
