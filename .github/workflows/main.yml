@@ -9,13 +9,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: futuratrepadeira/changed-files@v3.3.0
+      - uses: lots0logs/gh-action-get-changed-files@2.1.4
         id: files
         with:
-          repo-token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           #github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Youtube Checker Step
         uses: ./
         id: checker
         with:
-          file-path: "${{ steps.files.outputs.files_updated }}"
+          file-path: "${{ steps.files.outputs.modified }}"
