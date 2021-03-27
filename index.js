@@ -11,7 +11,7 @@ try {
       console.log('Readme file detected');
       fs.readFile(path, 'utf8').then((content) => {
         var result = content.match(/(https?:\/\/[^\s]+)/g);
-        for (r of result) {
+        for (var r of result) {
           if (r.includes('youtube')) {
             core.setOutput('reason', 'Video meets the requirements');
           }
