@@ -1,5 +1,4 @@
-on:
-  [push]
+on: [pull_request]
     #paths:
     #  - 'contributions/demo/'
 
@@ -10,12 +9,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: futuratrepadeira/changed-files@v3.3.0
-        id: files
+      - uses: 8BitJonny/gh-get-current-pr@v1
+        id: PR
         with:
-          repo-token: ${{ github.token }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          filterOutClosed: true
       - name: Youtube Checker Step
         uses: ./
         id: checker
         with:
-          file-path: "${{ steps.files.outputs.files_updated }}"
+          file-path: "${{ steps.PR.outputs.pr }}"
