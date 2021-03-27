@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Get modified files
-        run: echo '::set-output name=changed-files::$(git diff master --relative --name-only)'
+        run: echo '::set-output name=changed-files::$(git diff --relative --name-only)'
         #run: ::set-output name=changed-files::$(git diff --relative --name-only)
         id: git-command
         # with:
