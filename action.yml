@@ -5,7 +5,7 @@ inputs:
   file-path:  # id of input
     description: 'Name of modified file'
     required: true
-    default: ''
+    default: ''123
 outputs:
   reason: # id of output
     description: 'Validity reason'
