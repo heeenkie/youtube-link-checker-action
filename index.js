@@ -1,3 +1,4 @@
+'use strict'
 const core = require('@actions/core');
 const github = require('@actions/github');
 const { promises: fs } = require('fs')
@@ -8,13 +9,14 @@ try {
   
   for (var path of filePaths) {
     if (path.toLowerCase().includes('readme')) {
-      const content = await fs.readFile(path, 'utf8');
-      var result = content.match(/(https?:\/\/[^\s]+)/g);
-      for (r of result) {
-        if (r.includes('youtube')) {
-          core.setOutput('reason', 'Video meets the requirements');
+      const content = fs.readFile(path, 'utf8').then((val) => {
+        var result = content.match(/(https?:\/\/[^\s]+)/g);
+        for (r of result) {
+          if (r.includes('youtube')) {
+            core.setOutput('reason', 'Video meets the requirements');
+          }
         }
-      }
+      });
     }
   }
   const payload = JSON.stringify(github.context.payload, undefined, 2)
