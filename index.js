@@ -5,11 +5,8 @@ const { promises: fs, symlinkSync } = require('fs')
 
 try {
   // `who-to-greet` input defined in action metadata file
-  var filePaths = core.getInput('file-path');
+  const filePaths = core.getInput('file-path').split('\n');
   console.log("Test-- " + filePaths);
-  filePaths.replace('[', '')
-  filePaths.replace(']', '')
-  filePaths.replace('"', '')
   var filePathsArr = filePaths.split(',')
   for (var path of filePathsArr) {
     if (path.toLowerCase().includes('readme')) {
