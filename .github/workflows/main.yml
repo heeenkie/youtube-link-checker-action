@@ -9,13 +9,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: lots0logs/gh-action-get-changed-files@2.1.4
-        id: files
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get modified files
+        run: |
+          echo "::set-output name=changed-files::$(git diff --relative --name-only)
+        id: git-command
+        # with:
+        #   token: ${{ secrets.GITHUB_TOKEN }}
           #github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Youtube Checker Step
         uses: ./
         id: checker
         with:
-          file-path: "${{ steps.files.outputs.modified }}"
+          file-path: ${{ step.git-command.outputs.changed-files}}
