@@ -1,7 +1,7 @@
-on: [push]
-  #push:
-  #  paths:
-  #    - 'contributions/demo/'
+on:
+  push:
+    paths:
+      - 'contributions/demo/'
 
 jobs:
   youtube-checker:
@@ -10,13 +10,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: jitterbit/get-changed-files@v1
-        id: changed
+      - uses: futuratrepadeira/changed-files@v3.3.0
+        id: files
         with:
-          format: space-delimited
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Youtube Checker Step
         uses: ./
         id: checker
         with:
-          file-path: ${{ steps.changed.outputs.modified }}
+          file-path: "${{ steps.files.outputs.files_updated }}"
