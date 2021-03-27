@@ -19,3 +19,4 @@ jobs:
         id: checker
         with:
           file-path: ${{ steps.git-command.outputs.changed-files}}
+          
