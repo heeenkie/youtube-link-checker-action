@@ -19,7 +19,7 @@ try {
         }
       }).catch(error => core.setFailed(error.message));
     } else {
-      console.log('No updated readme file');
+      console.log('No updated readme file ' + path);
     }
   }
 } catch (error) {
