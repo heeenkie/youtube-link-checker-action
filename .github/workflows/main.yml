@@ -18,4 +18,4 @@ jobs:
         uses: ./
         id: checker
         with:
-          file-path: "${{ steps.files.outputs.modified }}"
+          file-path: "${{ steps.files.outputs.all }}"
