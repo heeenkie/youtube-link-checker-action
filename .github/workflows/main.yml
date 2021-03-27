@@ -12,7 +12,7 @@ jobs:
       - name: Get modified files
         run: |
           git fetch --quiet
-          echo "::set-output name=changed-files::$(git diff ${{ github.event.pull_request.head.sha }} --name-only)"
+          echo "::set-output name=changed-files::$(git diff ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.base.sha }} --name-only)"
         id: git-command
       - name: Youtube Checker Step
         uses: ./
