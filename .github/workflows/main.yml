@@ -12,7 +12,7 @@ jobs:
       - name: Get modified files
         run: |
           git fetch --quiet
-          changed-files="$(git diff ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.base.sha }} --name-only)"
+          changed-files=$(git diff ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.base.sha }} --name-only)
           changed-files="${changed-files//'%'/'%25'}"
           changed-files="${changed-files//$'\n'/'%0A'}"
           changed-files="${changed-files//$'\r'/'%0D'}"
