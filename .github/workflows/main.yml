@@ -1,7 +1,7 @@
-on:
-  push:
-    paths:
-      - 'contributions/demo/'
+on: [push]
+  #push:
+  #  paths:
+  #    - 'contributions/demo/'
 
 jobs:
   youtube-checker:
