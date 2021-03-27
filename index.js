@@ -16,7 +16,7 @@ try {
             core.setOutput('reason', 'Video meets the requirements');
           }
         }
-      });
+      }).catch(error => core.setFailed(error.message));
     }
   }
 } catch (error) {
