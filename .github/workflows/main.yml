@@ -10,7 +10,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Get modified files
-        run: ::set-output name=changed-files::$(git diff --relative --name-only)
+        run: echo '::set-output name=changed-files::hej'
+        #run: ::set-output name=changed-files::$(git diff --relative --name-only)
         id: git-command
         # with:
         #   token: ${{ secrets.GITHUB_TOKEN }}
