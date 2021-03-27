@@ -9,7 +9,7 @@ try {
   
   for (var path of filePaths) {
     if (path.toLowerCase().includes('readme')) {
-      const content = fs.readFile(path, 'utf8').then((val) => {
+      fs.readFile(path, 'utf8').then((content) => {
         var result = content.match(/(https?:\/\/[^\s]+)/g);
         for (r of result) {
           if (r.includes('youtube')) {
@@ -19,7 +19,6 @@ try {
       });
     }
   }
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
 } catch (error) {
   core.setFailed(error.message);
 }
