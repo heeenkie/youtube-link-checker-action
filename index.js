@@ -6,8 +6,7 @@ const { promises: fs, symlinkSync } = require('fs')
 try {
   // `who-to-greet` input defined in action metadata file
   var filePaths = core.getInput('file-path');
-  const payload = JSON.stringify(filePaths, undefined, 2);
-  console.log("Test-- " + payload);
+  console.log("Test-- " + filePaths);
   filePaths.replace('[', '')
   filePaths.replace(']', '')
   filePaths.replace('"', '')
