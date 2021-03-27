@@ -12,10 +12,14 @@ jobs:
       - name: Get modified files
         run: |
           git fetch --quiet
-          echo "::set-output name=changed-files::$(git diff ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.base.sha }} --name-only)"
+          changed-files="$(git diff ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.base.sha }} --name-only)"
+          changed-files="${changed-files//'%'/'%25'}"
+          changed-files="${changed-files//$'\n'/'%0A'}"
+          changed-files="${changed-files//$'\r'/'%0D'}"
+          echo "::set-output name=files::$changed-files"
         id: git-command
       - name: Youtube Checker Step
         uses: ./
         id: checker
         with:
-          file-path: ${{ steps.git-command.outputs.changed-files}}
+          file-path: ${{ steps.git-command.outputs.files}}
