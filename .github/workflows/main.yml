@@ -20,4 +20,4 @@ jobs:
         uses: ./
         id: checker
         with:
-          file-path: ${{ step.git-command.outputs.changed-files}}
+          file-path: ${{ steps.git-command.outputs.changed-files}}
