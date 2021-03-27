@@ -6,7 +6,7 @@ const { promises: fs, symlinkSync } = require('fs')
 try {
   // `who-to-greet` input defined in action metadata file
   const filePaths = core.getInput('file-path').split('\n');
-  for (var path of filePathsArr) {
+  for (var path of filePaths) {
     if (path.toLowerCase().includes('readme')) {
       console.log('Readme file detected');
       fs.readFile(path, 'utf8').then((content) => {
