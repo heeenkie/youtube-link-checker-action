@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: 8BitJonny/gh-get-current-pr@v1
+      - uses: 8BitJonny/gh-get-current-pr@1.0.1
         id: PR
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
