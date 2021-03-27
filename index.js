@@ -1,7 +1,7 @@
 'use strict'
 const core = require('@actions/core');
 const github = require('@actions/github');
-const { promises: fs } = require('fs')
+const { promises: fs, symlinkSync } = require('fs')
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -9,6 +9,7 @@ try {
 
   for (var path of filePaths) {
     if (path.toLowerCase().includes('readme')) {
+      console.log('Readme file updated');
       fs.readFile(path, 'utf8').then((content) => {
         var result = content.match(/(https?:\/\/[^\s]+)/g);
         for (r of result) {
@@ -18,7 +19,7 @@ try {
         }
       }).catch(error => core.setFailed(error.message));
     } else {
-      core.setOutput('reason', 'No updated readme file')
+      console.log('No updated readme file');
     }
   }
 } catch (error) {
