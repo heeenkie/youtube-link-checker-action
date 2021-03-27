@@ -6,11 +6,9 @@ const { promises: fs, symlinkSync } = require('fs')
 try {
   // `who-to-greet` input defined in action metadata file
   const filePaths = core.getInput('file-path').split('\n');
-  console.log("Test-- " + filePaths);
-  var filePathsArr = filePaths.split(',')
   for (var path of filePathsArr) {
     if (path.toLowerCase().includes('readme')) {
-      console.log('Readme file updated');
+      console.log('Readme file detected');
       fs.readFile(path, 'utf8').then((content) => {
         var result = content.match(/(https?:\/\/[^\s]+)/g);
         for (r of result) {
