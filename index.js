@@ -51,6 +51,7 @@ function getDuration(id) {
   fetch(uRl, settings)
     .then(res => res.json())
       .then((json) => {
-         return json;
+        console.log(json);
+        return json;
       });
 }
