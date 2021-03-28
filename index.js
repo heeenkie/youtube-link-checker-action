@@ -10,8 +10,13 @@ try {
     if (path.toLowerCase().includes('readme')) {
       console.log('Readme file detected');
       fs.readFile(path, 'utf8').then((content) => {
-        var videoId = youtube_videoId_parser(content);
-        console.log(videoId);
+        var urls = findAllURLs(content);
+        for (var url of urls) {
+          var videoId = youtube_videoId_parser(content);
+          if (videoId != false) {
+            console.log(videoId);
+          }
+        }
       }).catch(error => core.setFailed(error.message));
     } 
   }
@@ -26,7 +31,7 @@ function youtube_videoId_parser(url) {
 }
 
 function findAllURLs(str) {
-  return str.match(/\bhttp?::\/\/\S+/gi);
+  return str.match(/(https?\:\/\/)?([^\.\s]+)?[^\.\s]+\.[^\s]+/gi);
 }
 
 
