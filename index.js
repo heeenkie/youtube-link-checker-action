@@ -11,7 +11,7 @@ try {
       console.log('Readme file detected');
       fs.readFile(path, 'utf8').then((content) => {
         var videoId = youtube_videoId_parser(content);
-        console.log(videoID);
+        console.log(videoId);
       }).catch(error => core.setFailed(error.message));
     } 
   }
