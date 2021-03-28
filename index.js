@@ -12,6 +12,7 @@ try {
     if (path.toLowerCase().includes('readme')) {
       fs.readFile(path, 'utf8').then((content) => {
         var urls = findAllURLs(content);
+        console.log('Videos:');
         for (var url of urls) {
           var videoId = youtube_videoId_parser(url);
           if (videoId != false) {
@@ -54,11 +55,10 @@ function checkDuration(id) {
         if (items.length == 1) {
           let duration = items[0].contentDetails.duration;
           let seconds = moment.duration(duration, moment.ISO_8601).asSeconds();
-          console.log(seconds)
           if (seconds < 180 || seconds > 300) {
-            core.setFailed(`Duration of video ${id} does not meet the requirements`);
+            core.setFailed(`Length: ${seconds} \n Duration of video ${id} does not meet the requirements \n`);
           } else {
-            console.log(`Duration of video ${id} meets the requirements`);
+            console.log(`Length: ${seconds} \n Duration of video ${id} meets the requirements \n`);
           }
         }
       });
