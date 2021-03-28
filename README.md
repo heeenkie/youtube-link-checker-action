@@ -39,7 +39,7 @@ jobs:
           echo "::set-output name=files::$changed"
         id: git-command
       - name: Youtube Checker Step
-        uses: ./
+        uses: heeenkie/youtube-link-checker-action@1
         id: checker
         with:
           file-path: ${{ steps.git-command.outputs.files}}
