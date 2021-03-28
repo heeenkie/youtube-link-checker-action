@@ -26,8 +26,8 @@ function youtube_videoId_parser(url) {
     for (var m of match) {
       console.log('loop- ' + m);
     }
-    console.log('length: ' + match[1].length);
-    return (match&&match[1].length==11)? match[1] : false;
+    console.log('length: ' + match[1].trim().length);
+    return (match&&match[1].trim().length==11)? match[1].trim() : false;
 }
 
 function findAllURLs(str) {
