@@ -15,6 +15,7 @@ try {
         for (var url of urls) {
           var videoId = youtube_videoId_parser(url);
           if (videoId != false) {
+            authenticate().then(loadClient).then(() => console.log(findLength(videoId)));
             console.log(findLength(videoId));
           }
         }
@@ -57,31 +58,35 @@ function findAllURLs(str) {
 
 
 // Make sure the client is loaded and sign-in is complete before calling this method.
-function findLength(id) {
-  loadClient();
-  return gapi.client.youtube.videos.list({
-    "part": [
-      "contentDetails"
-    ],
-    "id": [
-      id
-    ]
-  }).then(function(response) {
-    // Handle the results here (response.result has the parsed body).
-    return response;
-  },
-  function(err) { 
-    console.error("Execute error", err); 
-    return null; 
-  });
-  
-}
-function loadClient() {
-  gapi.client.setApiKey("AIzaSyBbds7Xg7MqSiwwZR8e_3qAOkKLfURPeFo");
-  return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
-      .then(function() { console.log("GAPI client loaded for API"); },
-            function(err) { console.error("Error loading GAPI client for API", err); });
-}
-gapi.load("client:auth2", function() {
+function authenticate() {
+    return gapi.auth2.getAuthInstance()
+        .signIn({scope: "https://www.googleapis.com/auth/youtube.readonly"})
+        .then(function() { console.log("Sign-in successful"); },
+              function(err) { console.error("Error signing in", err); });
+  }
+  function loadClient() {
+    gapi.client.setApiKey("AIzaSyBbds7Xg7MqSiwwZR8e_3qAOkKLfURPeFo");
+    return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+        .then(function() { console.log("GAPI client loaded for API"); },
+              function(err) { console.error("Error loading GAPI client for API", err); });
+  }
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  function execute(id) {
+    return gapi.client.youtube.videos.list({
+      "part": [
+        "snippet,contentDetails,statistics"
+      ],
+      "id": [
+        id
+      ]
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+                return response;
+              },
+              function(err) { console.error("Execute error", err); return null;});
+  }
+  gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "427844486063-45ilapmunjls8e8la2dblmad70nvo3bm.apps.googleusercontent.com"});
-});
+  });
