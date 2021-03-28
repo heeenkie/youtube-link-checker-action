@@ -23,7 +23,9 @@ try {
 function youtube_videoId_parser(url) {
     var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
-    console.log('youtube_videoId_parser: ' + match);
+    for (var m of match) {
+      console.log('loop- ' + m);
+    }
     return (match&&match[1].length==11)? match[1] : false;
 }
 
