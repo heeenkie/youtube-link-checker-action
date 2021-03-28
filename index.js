@@ -14,8 +14,7 @@ try {
         for (var url of urls) {
           var videoId = youtube_videoId_parser(url);
           if (videoId != false) {
-
-            console.log(getDuration(videoId));
+            checkDuration(videoId)
           }
         }
       }).catch(error => core.setFailed(error.message));
@@ -44,7 +43,7 @@ function findAllURLs(str) {
 // http://youtu.be/0zM3nApSvMg
 // Wrapped in paranteses
 
-function getDuration(id) {
+function checkDuration(id) {
   let uRl = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=AIzaSyBbds7Xg7MqSiwwZR8e_3qAOkKLfURPeFo`;
   console.log(uRl);
   let settings = { method: 'Get'}
@@ -52,6 +51,12 @@ function getDuration(id) {
     .then(res => res.json())
       .then((json) => {
         console.log(json);
-        return json;
+        let items = json.items;
+        if (items.length == 1) {
+          items[0].contentDetails.json()
+            .then((detailJson) => {
+              console.log(detailJson);
+            });
+        }
       });
 }
