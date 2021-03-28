@@ -3,7 +3,8 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const { promises: fs, symlinkSync } = require('fs')
 require('iced-coffee-script/register');
-const gapi = require('gapi')
+//const gapi = require('gapi')
+const {gapi} = require('googleapis');
 
 try {
   // `who-to-greet` input defined in action metadata file
