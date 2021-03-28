@@ -43,29 +43,11 @@ function findAllURLs(str) {
 // http://youtu.be/0zM3nApSvMg
 // Wrapped in paranteses
 
-
-
-
-
-
-  /**
-   * Sample JavaScript code for youtube.videos.list
-   * See instructions for running APIs Explorer code samples locally:
-   * https://developers.google.com/explorer-help/guides/code_samples#javascript
-   */
-
-
-
 function getDuration(id) {
-  var uRl = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=AIzaSyBbds7Xg7MqSiwwZR8e_3qAOkKLfURPeFo`
+  var uRl = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=AIzaSyBbds7Xg7MqSiwwZR8e_3qAOkKLfURPeFo`;
   fetch(uRl, 'Get')
     .then(res => res.json())
       .then((json) => {
          return json;
       });
 }
-
-
-
-
-
