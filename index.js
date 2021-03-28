@@ -4,7 +4,7 @@ const github = require('@actions/github');
 const { promises: fs, symlinkSync } = require('fs')
 require('iced-coffee-script/register');
 //const gapi = require('gapi')
-const {gapi} = require('googleapis');
+//const {gapi} = require('googleapis');
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -16,7 +16,7 @@ try {
         for (var url of urls) {
           var videoId = youtube_videoId_parser(url);
           if (videoId != false) {
-            authenticate().then(loadClient).then(() => console.log(findLength(videoId)));
+            authenticate().then(loadClient).then(() => console.log(execute(videoId)));
             console.log(findLength(videoId));
           }
         }
