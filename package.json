@@ -24,6 +24,7 @@
     "google-auth-library": "^7.0.3",
     "googleapis": "^68.0.0",
     "iced-coffee-script": "^108.0.14",
+    "moment": "^2.29.1",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
