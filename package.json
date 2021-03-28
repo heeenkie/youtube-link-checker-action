@@ -22,5 +22,8 @@
     "@actions/github": "^4.0.0",
     "gapi": "0.0.3",
     "googleapis": "^68.0.0"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.12.7"
   }
 }
