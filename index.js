@@ -10,7 +10,17 @@ try {
     if (path.toLowerCase().includes('readme')) {
       console.log('Readme file detected');
       fs.readFile(path, 'utf8').then((content) => {
-        var videoId = youtube_videoId_parser(content);
+        const matches = findAllURLs(content);
+        youtube_videoId_parser(content);
+        var videoId = '';
+        console.log('looooping')
+        for (var m of matches) {
+          var tmp = youtube_videoId_parser(content);
+          if (tmp != false) {
+            videoId = tmp
+          }
+          console.log(videoId);
+        }
         console.log(videoId);
       }).catch(error => core.setFailed(error.message));
     } 
@@ -19,8 +29,13 @@ try {
   core.setFailed(error.message);
 }
 
-function youtube_videoId_parser(url){
+function youtube_videoId_parser(url) {
     var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
+    console.log('youtube_videoId_parser: ' + match);
     return (match&&match[1].length==11)? match[1] : false;
+}
+
+function findAllURLs(str) {
+  return str.match(/\bhttp?::\/\/\S+/gi);
 }
