@@ -46,6 +46,7 @@ function findAllURLs(str) {
 
 function getDuration(id) {
   let uRl = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=AIzaSyBbds7Xg7MqSiwwZR8e_3qAOkKLfURPeFo`;
+  console.log(uRl);
   let settings = { method: 'Get'}
   fetch(uRl, settings)
     .then(res => res.json())
