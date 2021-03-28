@@ -12,6 +12,7 @@ try {
         var urls = findAllURLs(content);
         console.log(urls);
         for (var url of urls) {
+          console.log(url);
           var videoId = youtube_videoId_parser(content);
           if (videoId != false) {
             console.log(videoId);
