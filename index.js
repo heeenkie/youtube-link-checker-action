@@ -10,17 +10,8 @@ try {
     if (path.toLowerCase().includes('readme')) {
       console.log('Readme file detected');
       fs.readFile(path, 'utf8').then((content) => {
-        const matches = findAllURLs(content);
-        youtube_videoId_parser(content);
-        var videoId = '';
-        console.log('looooping')
-        for (var m of matches) {
-          var tmp = youtube_videoId_parser(content);
-          if (tmp != false) {
-            videoId = tmp
-          }
-          console.log(videoId);
-        }
+        //const matches = findAllURLs(content);
+        var videoId = youtube_videoId_parser(content);
         console.log(videoId);
       }).catch(error => core.setFailed(error.message));
     } 
