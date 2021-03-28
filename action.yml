@@ -6,6 +6,9 @@ inputs:
     description: 'Name of modified file'
     required: true
     default: ''
+  youtube-api-key:
+    required: true
+    description: 'Youtube api key'
 outputs:
   reason: # id of output
     description: 'Validity reason'
