@@ -8,9 +8,9 @@ try {
   const filePaths = core.getInput('file-path').split('\n');
   for (var path of filePaths) {
     if (path.toLowerCase().includes('readme')) {
-      console.log('Readme file detected');
       fs.readFile(path, 'utf8').then((content) => {
         var urls = findAllURLs(content);
+        console.log(urls);
         for (var url of urls) {
           var videoId = youtube_videoId_parser(content);
           if (videoId != false) {
