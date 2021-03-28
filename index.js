@@ -57,14 +57,15 @@ function findAllURLs(str) {
 
 
 function getDuration(id) {
-  fetch(url, 'Get')
+  var uRl = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=AIzaSyBbds7Xg7MqSiwwZR8e_3qAOkKLfURPeFo`
+  fetch(uRl, 'Get')
     .then(res => res.json())
       .then((json) => {
          return json;
       });
 }
 
-https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=AIzaSyBbds7Xg7MqSiwwZR8e_3qAOkKLfURPeFo
+
 
 
 
