@@ -20,7 +20,7 @@ try {
 }
 
 function youtube_videoId_parser(url) {
-    var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
+    var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?\/]*).*/;
     var match = url.match(regExp);
     return (match&&match[1].trim().length==11)? match[1].trim() : false;
 }
