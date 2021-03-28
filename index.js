@@ -46,7 +46,6 @@ function findAllURLs(str) {
 
 
 
-<script src="https://apis.google.com/js/api.js"></script>
 
   /**
    * Sample JavaScript code for youtube.videos.list
