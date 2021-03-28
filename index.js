@@ -3,7 +3,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const { promises: fs, symlinkSync } = require('fs')
 require('iced-coffee-script/register');
-const gapi = require('googleapis')
+require('gapi')
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -83,5 +83,5 @@ function loadClient() {
             function(err) { console.error("Error loading GAPI client for API", err); });
 }
 gapi.load("client:auth2", function() {
-    gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
+    gapi.auth2.init({client_id: "427844486063-45ilapmunjls8e8la2dblmad70nvo3bm.apps.googleusercontent.com"});
 });
