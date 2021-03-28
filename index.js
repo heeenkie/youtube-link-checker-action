@@ -2,6 +2,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const { promises: fs, symlinkSync } = require('fs')
+const fetch = require("node-fetch");
 
 try {
   // `who-to-greet` input defined in action metadata file
