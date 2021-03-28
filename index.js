@@ -46,18 +46,17 @@ function findAllURLs(str) {
 
 function checkDuration(id) {
   let uRl = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=AIzaSyBbds7Xg7MqSiwwZR8e_3qAOkKLfURPeFo`;
-  console.log(uRl);
   let settings = { method: 'Get'}
   fetch(uRl, settings)
     .then(res => res.json())
       .then((json) => {
-        console.log(json);
         let items = json.items;
         if (items.length == 1) {
           let duration = items[0].contentDetails.duration;
-          let seconds = moment.duration(duration, moment.ISO_8601)
+          let seconds = moment.duration(duration, moment.ISO_8601).asSeconds;
+          console.log(seconds);
           if (seconds < 180 || seconds > 300) {
-            core.setFailed('Duration of video does not meet the requirements');
+            core.setFailed(`Duration of video ${id} does not meet the requirements`);
           } else {
             console.log(`Duration of video ${id} meets the requirements`);
           }
