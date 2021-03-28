@@ -3,6 +3,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const { promises: fs, symlinkSync } = require('fs')
 const fetch = require("node-fetch");
+const moment = require('moment');
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -53,10 +54,13 @@ function checkDuration(id) {
         console.log(json);
         let items = json.items;
         if (items.length == 1) {
-          items[0].contentDetails.json()
-            .then((detailJson) => {
-              console.log(detailJson);
-            });
+          let duration = items[0].contentDetails.duration;
+          let seconds = moment.duration(duration, moment.ISO_8601)
+          if (seconds < 180 || seconds > 300) {
+            core.setFailed('Duration of video does not meet the requirements');
+          } else {
+            console.log(`Duration of video ${id} meets the requirements`);
+          }
         }
       });
 }
