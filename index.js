@@ -10,12 +10,10 @@ try {
     if (path.toLowerCase().includes('readme')) {
       fs.readFile(path, 'utf8').then((content) => {
         var urls = findAllURLs(content);
-        console.log(urls);
         for (var url of urls) {
-          console.log(url);
           var videoId = youtube_videoId_parser(url);
           if (videoId != false) {
-            console.log(videoId);
+            console.log(findLength(videoId));
           }
         }
       }).catch(error => core.setFailed(error.message));
@@ -35,7 +33,6 @@ function findAllURLs(str) {
   return str.match(/(https?\:\/\/)?([^\.\s]+)?[^\.\s]+\.[^\s]+/gi);
 }
 
-
 // http://www.youtube.com/watch?v=0zM3nApSvMg&feature=feedrec_grec_index
 // http://www.youtube.com/user/IngridMichaelsonVEVO#p/a/u/1/QdK8U-VIH_o
 // http://www.youtube.com/v/0zM3nApSvMg?fs=1&amp;hl=en_US&amp;rel=0
@@ -43,3 +40,38 @@ function findAllURLs(str) {
 // http://www.youtube.com/embed/0zM3nApSvMg?rel=0
 // http://www.youtube.com/watch?v=0zM3nApSvMg
 // http://youtu.be/0zM3nApSvMg
+// Wrapped in paranteses
+
+
+
+
+
+<script src="https://apis.google.com/js/api.js"></script>
+
+  /**
+   * Sample JavaScript code for youtube.videos.list
+   * See instructions for running APIs Explorer code samples locally:
+   * https://developers.google.com/explorer-help/guides/code_samples#javascript
+   */
+
+
+// Make sure the client is loaded and sign-in is complete before calling this method.
+function findLength(id) {
+  return gapi.client.youtube.videos.list({
+    "part": [
+      "contentDetails"
+    ],
+    "id": [
+      id
+    ]
+  }).then(function(response) {
+    // Handle the results here (response.result has the parsed body).
+    return response;
+  },
+  function(err) { 
+    console.error("Execute error", err); 
+    return null; 
+  });
+}
+
+
