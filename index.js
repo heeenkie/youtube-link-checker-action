@@ -10,16 +10,17 @@ try {
     if (path.toLowerCase().includes('readme')) {
       console.log('Readme file detected');
       fs.readFile(path, 'utf8').then((content) => {
-        var result = content.match(/(https?:\/\/[^\s]+)/g);
-        console.log('result: ' + result);
-        for (var r of result) {
-          if (r.includes('youtube')) {
-            console.log('found link');
-          }
-        }
+        var videoId = youtube_videoId_parser(content);
+        console.log(videoID);
       }).catch(error => core.setFailed(error.message));
     } 
   }
 } catch (error) {
   core.setFailed(error.message);
+}
+
+function youtube_videoId_parser(url){
+    var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    return (match&&match[1].length==11)? match[1] : false;
 }
