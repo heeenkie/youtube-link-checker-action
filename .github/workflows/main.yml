@@ -24,4 +24,4 @@ jobs:
         id: checker
         with:
           file-path: ${{ steps.git-command.outputs.files}}
-          youtube-api-key: ${{ secret.YOUTUBE_API_KEY }}
+          youtube-api-key: ${{ secrets.YOUTUBE_API_KEY }}
