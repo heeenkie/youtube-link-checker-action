@@ -56,6 +56,7 @@ function findAllURLs(str) {
 
 // Make sure the client is loaded and sign-in is complete before calling this method.
 function findLength(id) {
+  loadClient();
   return gapi.client.youtube.videos.list({
     "part": [
       "contentDetails"
@@ -71,6 +72,13 @@ function findLength(id) {
     console.error("Execute error", err); 
     return null; 
   });
+  
+}
+function loadClient() {
+  gapi.client.setApiKey("AIzaSyBbds7Xg7MqSiwwZR8e_3qAOkKLfURPeFo");
+  return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+      .then(function() { console.log("GAPI client loaded for API"); },
+            function(err) { console.error("Error loading GAPI client for API", err); });
 }
 
 
