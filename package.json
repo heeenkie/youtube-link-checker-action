@@ -21,6 +21,6 @@
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
     "gapi": "0.0.3",
-    "googleapis": "^39.2.0"
+    "googleapis": "^68.0.0"
   }
 }
