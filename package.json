@@ -21,7 +21,8 @@
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
     "gapi": "0.0.3",
-    "googleapis": "^68.0.0"
+    "googleapis": "^68.0.0",
+    "iced-coffee-script": "^108.0.14"
   },
   "devDependencies": {
     "coffee-script": "^1.12.7"
