@@ -7,11 +7,14 @@ inputs:
     required: true
     default: ''
   youtube-api-key:
-    required: true
     description: 'Youtube api key'
-outputs:
-  reason: # id of output
-    description: 'Validity reason'
+    required: true
+  min-length:
+    description: 'Video min length'
+    required: true
+  max-length:
+    description: 'Video max length'
+    required: true
 runs:
   using: 'node12'
   main: 'index.js'
