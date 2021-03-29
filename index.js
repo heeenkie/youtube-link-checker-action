@@ -56,7 +56,7 @@ function checkDuration(id) {
         if (items.length == 1) {
           let duration = items[0].contentDetails.duration;
           let seconds = moment.duration(duration, moment.ISO_8601).asSeconds();
-          if (seconds < core.getInput('min-length') || seconds > core.getInput('max-length')) {
+          if (seconds < parseInt(core.getInput('min-length')) || seconds > parseInt(core.getInput('max-length'))) {
             core.setFailed(`Length: ${seconds} \n Duration of video ${id} does not meet the requirements \n`);
           } else {
             console.log(`Length: ${seconds} \n Duration of video ${id} meets the requirements \n`);
