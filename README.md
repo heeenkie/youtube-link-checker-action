@@ -43,8 +43,8 @@ jobs:
         with:
           file-path: ${{ steps.git-command.outputs.files}}
           youtube-api-key: {{ secrets.YOUTUBE_API_KEY }}
-          min-length: 100
-          max-length: 1000
+          min-length: '100'
+          max-length: '1000'
 ```
 
 ## DevOps Course DD2482 ##
@@ -73,8 +73,8 @@ so this need to be added at the bottom of the file, youtube-link-checker.yaml.
         with:
           file-path: ${{ steps.git-command.outputs.files}}
           youtube-api-key: {{ secrets.YOUTUBE_API_KEY }}
-          min-length: 180
-          max-length: 300
+          min-length: '180'
+          max-length: '300'
 ```
 
 ## Youtube Link Information ##
