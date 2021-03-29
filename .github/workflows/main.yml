@@ -25,5 +25,5 @@ jobs:
         with:
           file-path: ${{ steps.git-command.outputs.files}}
           youtube-api-key: ${{ secrets.YOUTUBE_API_KEY }}
-          min-length: 180
-          max-length: 300
+          min-length: '180'
+          max-length: '300'
