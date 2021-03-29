@@ -6,7 +6,6 @@ const fetch = require("node-fetch");
 const moment = require('moment');
 
 try {
-  // `who-to-greet` input defined in action metadata file
   const filePaths = core.getInput('file-path').split('\n');
   for (var path of filePaths) {
     if (path.toLowerCase().includes('readme')) {
