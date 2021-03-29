@@ -1,6 +1,8 @@
 # youtube-link-checker-action #
+
 ## Latest Release ##
 v2
+
 
 ## Overview ##
 Github Action to check the lenght of youtube videos provided in any README.
@@ -8,10 +10,12 @@ The check would be used on every pull request opened against the git head.
 Sets the PR status to failure if the action finds a youtube link that does 
 not meet the requiremtns.
 
+
 ## Setup ##
 ### 1 ###
 Create a [GitHub Secret](https://docs.github.com/en/actions/reference/encrypted-secrets) and name it to 'YOUTUBE_API_KEY'.
 The secret's value needs to be your youtube API key which you can get from [here](https://console.cloud.google.com/apis).
+
 
 ### 2 ###
 Create a file with the following content under `.github/workflows/youtube-link-checker.yaml`:
@@ -49,9 +53,11 @@ jobs:
           max-length: '1000'
 ```
 
+
 ## DevOps Course DD2482 ##
 This action is created for the course DD2482.
 The following information is course specific to make it work according to the requirements
+
 
 ### Folder Specification ###
 At the top of the created file, youtube-link-checker.yaml, we need to add code to only 
@@ -63,6 +69,7 @@ on:
     paths:
       -'contributions/demo/**'
 ```
+
 
 ### Video Length Specification ###
 The requirements for the video length are set to be between 3 to 5 minutes or 180 to 300 seconds 
@@ -78,6 +85,7 @@ so this need to be added at the bottom of the file, youtube-link-checker.yaml.
           min-length: '180'
           max-length: '300'
 ```
+
 
 ## Youtube Link Information ##
 A Youtube can have many different looks and to capture them all with regex can be a mess.
