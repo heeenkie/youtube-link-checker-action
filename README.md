@@ -43,6 +43,8 @@ jobs:
         with:
           file-path: ${{ steps.git-command.outputs.files}}
           youtube-api-key: {{ secrets.YOUTUBE_API_KEY }}
+          min-length: 100
+          max-length: 1000
 ```
 
 ## DevOps Course DD2482 ##
