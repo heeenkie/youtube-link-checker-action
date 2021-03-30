@@ -44,7 +44,7 @@ jobs:
           echo "::set-output name=files::$changed"
         id: git-command
       - name: Youtube Checker Step
-        uses: heeenkie/youtube-link-checker-action@2
+        uses: heeenkie/youtube-link-checker-action@v2
         id: checker
         with:
           file-path: ${{ steps.git-command.outputs.files}}
@@ -77,7 +77,7 @@ so this need to be added at the bottom of the file, youtube-link-checker.yaml.
 
 ```
  - name: Youtube Checker Step
-        uses: heeenkie/youtube-link-checker-action@2
+        uses: heeenkie/youtube-link-checker-action@v2
         id: checker
         with:
           file-path: ${{ steps.git-command.outputs.files}}
